@@ -4,7 +4,6 @@
 
 # Getting basic libraries:
 import os, sys, math
-from symbol import try_stmt
 import numpy as np
 from Bio.PDB import *
 
