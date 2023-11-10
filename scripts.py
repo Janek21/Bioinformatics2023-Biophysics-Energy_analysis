@@ -6,6 +6,7 @@
 import os, sys, math
 import numpy as np
 from Bio.PDB import *
+import argparse
 
 # Libraries for structure checking: --> 
 import biobb_structure_checking
