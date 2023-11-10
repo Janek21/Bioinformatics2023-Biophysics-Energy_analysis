@@ -68,7 +68,12 @@ st_c.fixside("All")
 #add hydrogens
 st_c.add_hydrogen("auto")
 
-#biobb_structure_checking
+#you could also do everything with st_c.checkall() but we did it manually so its clearer what we do
+st_c._save_structure(args['output_structure_path'])
+
+#st_c.rem_hydrogen('yes')
+#st_c.add_hydrogen('--add_charges --add_mode auto')
+#st_c._save_structure(args['output_structure_path_charges'])
 
 
 ####STEP 1
