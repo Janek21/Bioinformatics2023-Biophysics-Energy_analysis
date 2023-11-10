@@ -73,4 +73,13 @@ class ResiduesDataLib:
     def __init__(self, fname):
         self.residues = {}
 
-        try_stmtfh = open(fname, "r") # Opening for reading the archive
+        try:
+            tmtfh = open(fname, "r") # Opening for reading the archive
+
+        # Checking for errors, getting error msj and quitting
+        except OSError:
+            print(f"# ERROR while loading library file ({fname})")
+            sys.exit(2)
+
+        
+        
