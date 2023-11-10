@@ -7,7 +7,6 @@ import os, sys, math
 from symbol import try_stmt
 import numpy as np
 from Bio.PDB import *
-import argparse
 
 # Libraries for structure checking: --> 
 import biobb_structure_checking
@@ -57,16 +56,13 @@ st_c.metals("All")
 st_c.ligands("All")
 
     #4
-#Fix amides
-st_c.amide("All")
-#fix the chirality of some aa
-st_c.chiral("All") 
-#biobb_structure_checking
+biobb_structure_checking
 
 ####STEP 1
 
 
 ####STEP 2
+import argparse
 
 # Class / functions needed to calculate VanderWaals parameters or the residue library
 
@@ -85,5 +81,5 @@ class ResiduesDataLib:
             print(f"# ERROR while loading library file ({fname})")
             sys.exit(2)
 
-        
+        for line in 
         
