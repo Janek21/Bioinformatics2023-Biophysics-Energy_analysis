@@ -68,7 +68,12 @@ st_c.fixside("All")
 #add hydrogens
 st_c.add_hydrogen("auto")
 
-#biobb_structure_checking
+#you could also do everything with st_c.checkall() but we did it manually so its clearer what we do
+st_c._save_structure(args['output_structure_path'])
+
+#st_c.rem_hydrogen('yes')
+#st_c.add_hydrogen('--add_charges --add_mode auto')
+#st_c._save_structure(args['output_structure_path_charges'])
 
 
 ####STEP 1
@@ -163,14 +168,8 @@ class VdwParamset(): #extracted from GELPI's github
             self.at_types[data[0]] = AtomType(data) # getting the atom type by calling the class AtomType
 
         self.ntypes = len(self.at_types) # assigning the length of the variable to a local var
-<<<<<<< Updated upstream
-        fh.close() # clossing 
-
-=======
         fh.close() # clossing
-        self.ntypes = len(self.at_types) # getting the length of at_types and storing it in a local variable
-        fh.close() # closing file
->>>>>>> Stashed changes
+
 
 
 
@@ -227,4 +226,6 @@ def add_atom_parameters(st, res_lib, ff_params):
         at.xtra['vdw'] = ff_params.at_types[at.xtra['atom_type']]
 
 
-add_atom_parameters(st, res_lib, ff_params)
+add_atom_parameters(st, residue_library, ff_params)
+    self.ntypes = len(self.at_types) # getting the length of at_types and storing it in a local variable
+    fh.close() # closing file
