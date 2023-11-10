@@ -231,6 +231,5 @@ def add_atom_parameters(st, res_lib, ff_params):
         at.xtra['vdw'] = ff_params.at_types[at.xtra['atom_type']]
 
 
-add_atom_parameters()
 add_atom_parameters(st, res_lib, ff_params)
 
