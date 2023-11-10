@@ -62,3 +62,5 @@ biobb_structure_checking
 
 
 ####STEP 2
+
+# Class / functions needed to calculate VanderWaals parameters or the residue library
