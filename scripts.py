@@ -104,28 +104,28 @@ class ResiduesDataLib(): # Creating the class
                 continue
 
             data = line.split() # splitting the data
-            r = Residue(data)
+            r = Residue(data) # getting the residue
 
-            self.residue_data[r.id] = r
+            self.residue_data[r.id] = r # Assigning the residue to a local var of the class
 
-        self.nres = len(self.residue_data)
+        self.nres = len(self.residue_data) # Getting the lenght of the variable and assigining it to a local variable
 
-    def get_params(self, resid, atid):
-        atom_id = resid + ':' + atid
+    def get_params(self, resid, atid): # Defining function to get the parameters
+        atom_id = resid + ':' + atid # getting the atom id
 
-        if atom_id in self.residue_data:
+        if atom_id in self.residue_data: # Checking if the atom id is inside the residue data and if so returning it
             return self.residue_data[atom_id]
         
-        else:
+        else: # If not in the data getting an error
             print("WARNING: atom not found in library (", atom_id, ')')
             return None
 
-class Residue():
+class Residue(): # Defining the classs+
     
-    def __init__(self,data):
-        self.id     = data[0]+':'+data[1]
-        self.at_type = data[2]
-        self.charge  = float(data[3])
+    def __init__(self,data): # Initializing the class
+        self.id     = data[0]+':'+data[1] # getting id
+        self.at_type = data[2] # 
+        self.charge  = float(data[3]) # gettig charge
         
 class AtomType():
 
