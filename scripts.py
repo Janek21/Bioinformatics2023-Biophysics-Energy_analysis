@@ -4,6 +4,7 @@
 
 # Getting basic libraries:
 import os, sys, math
+from symbol import try_stmt
 import numpy as np
 from Bio.PDB import *
 import argparse
@@ -64,3 +65,12 @@ biobb_structure_checking
 ####STEP 2
 
 # Class / functions needed to calculate VanderWaals parameters or the residue library
+
+# Defining the class
+class ResiduesDataLib:
+
+    # Creating a function to initialize the class and use local variables inside the class
+    def __init__(self, fname):
+        self.residues = {}
+
+        try_stmtfh = open(fname, "r") # Opening for reading the archive
