@@ -46,7 +46,11 @@ st_c.metals("All")
 #Remove ligands
 st_c.ligands("All")
     #4
-biobb_structure_checking
+#Fix amides
+st_c.amide("All")
+#fix the chirality of some aa
+st_c.chiral("All") 
+#biobb_structure_checking
 
 ####STEP 1
 
