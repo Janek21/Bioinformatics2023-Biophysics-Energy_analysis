@@ -63,6 +63,8 @@ st_c.amide("All")
 st_c.chiral("All") 
 #fix the backbone
 st_c.backbone('--fix_atoms All --fix_chain none --add_caps none')
+#detects and rebuilds missing protein side chains
+st_c.fixside("All")
 #biobb_structure_checking
 
 
