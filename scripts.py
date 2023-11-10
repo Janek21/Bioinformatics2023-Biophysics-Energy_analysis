@@ -168,7 +168,7 @@ class VdwParamset(): #extracted from GELPI's github
             self.at_types[data[0]] = AtomType(data) # getting the atom type by calling the class AtomType
 
         self.ntypes = len(self.at_types) # assigning the length of the variable to a local var
-        fh.close() # clossing 
+        fh.close() # clossing
 
 
 
