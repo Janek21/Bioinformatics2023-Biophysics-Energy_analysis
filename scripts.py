@@ -60,3 +60,4 @@ biobb_structure_checking
 ####STEP 1
 
 
+####STEP 2
