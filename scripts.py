@@ -78,23 +78,24 @@ from Bio.PDB.PDBIO import PDBIO, Select
 
 class ResiduesDataLib(): # Creating the class
 
-    def __init__(self, fname):
+    def __init__(self, fname): # initialitation of the class with closed variables
         self.residue_data = {}
 
         try:
-            fh = open(fname, "r")
+            fh = open(fname, "r") # Oppening the file for reading
 
-        except OSError:
+        except OSError: # Searching for errors and if found fiving msg error and quitting
             print("#ERROR while loading library file (", fname, ")")
             sys.exit(2)
 
-        for line in fh:
+        for line in fh: # Reading the file line per line
 
-            if line[0] == '#':
+            if line[0] == '#': # If the 1st position of the line is #
                 continue
 
             data = line.split()
             r = Residue(data)
+
             self.residue_data[r.id] = r
 
         self.nres = len(self.residue_data)
@@ -145,6 +146,6 @@ class VdwParamset(): #extracted from GELPI's github
 
             data = line.split()
             self.at_types[data[0]] = AtomType(data)
-            
+
         self.ntypes = len(self.at_types)
         fh.close()
