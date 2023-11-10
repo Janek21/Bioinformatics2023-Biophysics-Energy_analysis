@@ -230,3 +230,4 @@ def add_atom_parameters(st, res_lib, ff_params):
 add_atom_parameters(st, residue_library, ff_params)
     self.ntypes = len(self.at_types) # getting the length of at_types and storing it in a local variable
     fh.close() # closing fileadd_atom_parameters(st, res_lib, ff_params)
+add_atom_parameters(st, res_lib, ff_params)
