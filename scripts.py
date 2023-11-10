@@ -133,7 +133,6 @@ class Residue(): # Defining the classs
         
 class AtomType(): # Defining class
 
-    def __init__(self, data):
     def __init__(self, data): # Initializing the class
         # Getting some info and storing it in local variables
         self.id   = data[0]
@@ -148,31 +147,23 @@ class VdwParamset(): #extracted from GELPI's github
     def __init__ (self, file_name): # initializing the class
         self.at_types = {}
 
-        try:
         try: # oppening the file for reading
             fh = open(file_name, "r")
 
-        except OSError:
         except OSError: # checking for errors and quitting
             print ("#ERROR while loading parameter file (", file_name, ")")
             sys.exit(2)
 
-        for line in fh:
         for line in fh: # Reading the file
 
-            if line[0] == '#':
             if line[0] == '#': # checking for the headder
                 continue
 
-            data = line.split()
-            self.at_types[data[0]] = AtomType(data)
             data = line.split() # splitting the line
             self.at_types[data[0]] = AtomType(data) # getting the atom type by calling the class AtomType
 
-        self.ntypes = len(self.at_types)
-        fh.close()
         self.ntypes = len(self.at_types) # assigning the length of the variable to a local var
-        fh.close() # clossing
+        fh.close() # clossing 
 
 
 
