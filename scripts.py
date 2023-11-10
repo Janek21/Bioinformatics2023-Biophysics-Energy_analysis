@@ -100,10 +100,10 @@ class ResiduesDataLib(): # Creating the class
 
         for line in fh: # Reading the file line per line
 
-            if line[0] == '#': # If the 1st position of the line is #
+            if line[0] == '#': # Checking for the header and continuing
                 continue
 
-            data = line.split()
+            data = line.split() # splitting the data
             r = Residue(data)
 
             self.residue_data[r.id] = r
