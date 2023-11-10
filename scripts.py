@@ -103,7 +103,7 @@ class ResiduesDataLib(): # Creating the class
                 continue
 
             data = line.split() # splitting the data
-            r = Residue(data) # getting the residue
+            r = Residue(data) # calling the class Residue to get the residue
 
             self.residue_data[r.id] = r # Assigning the residue to a local var of the class
 
@@ -119,14 +119,14 @@ class ResiduesDataLib(): # Creating the class
             print("WARNING: atom not found in library (", atom_id, ')')
             return None
 
-class Residue(): # Defining the classs+
+class Residue(): # Defining the classs
     
     def __init__(self,data): # Initializing the class
         self.id     = data[0]+':'+data[1] # getting id
         self.at_type = data[2] # 
         self.charge  = float(data[3]) # gettig charge
         
-class AtomType():
+class AtomType(): # Defining class
 
     def __init__(self, data):
         self.id   = data[0]
