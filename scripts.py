@@ -205,11 +205,6 @@ class VdwParamset(): #extracted from GELPI's github
 
 
 
-
-
-
-
-
 #Add atom parameters
 
 def add_atom_parameters(st, res_lib, ff_params):
@@ -217,10 +212,13 @@ def add_atom_parameters(st, res_lib, ff_params):
         resname = at.get_parent().get_resname() #Finds residues 
         params = res_lib.get_params(resname, at.id)
         if not params:
+        params = res_lib.get_params(resname, at.id) #Gets the parameters of the atoms
+        if not params:  # If it's not in an AA get the atom without charge
             print(at)
             at.xtra['atom_type'] = at.element
             at.xtra['charge'] = 0
         else:
+        else:           #If it's in an AA assignt type and charge to the atom
             at.xtra['atom_type'] = params.at_type
             at.xtra['charge'] = params.charge
         at.xtra['vdw'] = ff_params.at_types[at.xtra['atom_type']]
@@ -229,3 +227,5 @@ def add_atom_parameters(st, res_lib, ff_params):
 add_atom_parameters(st, residue_library, ff_params)
     self.ntypes = len(self.at_types) # getting the length of at_types and storing it in a local variable
     fh.close() # closing file
+add_atom_parameters()
+
