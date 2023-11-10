@@ -158,3 +158,61 @@ class VdwParamset(): #extracted from GELPI's github
 
         self.ntypes = len(self.at_types)
         fh.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Add atom parameters
+
+def add_atom_parameters(st, res_lib, ff_params):
+    for at in st.get_atoms():
+        resname = at.get_parent().get_resname() #Finds residues 
+        params = res_lib.get_params(resname, at.id)
+        if not params:
+            print(at)
+            at.xtra['atom_type'] = at.element
+            at.xtra['charge'] = 0
+        else:
+            at.xtra['atom_type'] = params.at_type
+            at.xtra['charge'] = params.charge
+        at.xtra['vdw'] = ff_params.at_types[at.xtra['atom_type']]
+
+
+add_atom_parameters(st, residue_library, ff_params)
