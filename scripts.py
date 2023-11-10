@@ -4,7 +4,6 @@
 
 # Getting basic libraries:
 import os, sys, math
-from symbol import try_stmt
 import numpy as np
 from Bio.PDB import *
 
@@ -63,7 +62,7 @@ st_c.amide("All")
 #fix the chirality of some aa
 st_c.chiral("All") 
 #fix the backbone
-st_c.backbone()
+st_c.backbone('--fix_atoms All --fix_chain none --add_caps none')
 #biobb_structure_checking
 
 
