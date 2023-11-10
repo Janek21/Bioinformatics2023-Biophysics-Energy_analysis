@@ -77,7 +77,8 @@ st_c._save_structure(args['output_structure_path'])
 
 
 ####STEP 1
-
+#in 6m0j.pdb the polar bonds between chains have max length=3.1+1.5=4.6
+#in 6m0j_fix.pdb the polar bonds between chains have max length=3.5+1.5=5
 
 
 ####STEP 2
