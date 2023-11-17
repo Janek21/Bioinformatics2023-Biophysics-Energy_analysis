@@ -34,7 +34,10 @@ def chain_comparison(chain1_atoms, chain2_atoms):
     for a1 in chain1_atoms:
         for a2 in chain2_atoms:
             if a1.get_parent().id==a1.get_parent().id and a2.get_parent().id == a2.get_parent().id:
-                distance=a1-a2
+                distance=a1-a2#unsuported operand
+                #nsupported operand type(s) for -: 'Residue' and 'Residue'
+                # a1=<Residue SER het=  resseq=19 icode= >
+                # a2=<Residue THR het=  resseq=333 icode= >
             if distance<=distance_treshold:
                 interface_residues.add(a1.get_parents().id[1])
                 interface_residues.add(a2.get_parents().id[1])
