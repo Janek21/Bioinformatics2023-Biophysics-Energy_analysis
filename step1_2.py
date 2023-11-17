@@ -7,6 +7,7 @@ chain1_atoms=[]
 chain2_atoms=[]
 distance_treshold=2.3#placeholder #QUINA ES??
             
+#UNIC ERROR VE DE EMPTY INTERFACES
 def chain_atoms(structure):
     model =structure[0]
     t=0
@@ -16,30 +17,29 @@ def chain_atoms(structure):
         if t==0:
             t=1
             for residual in chain.get_residues():
-                for atom in residual:
-                    chain1_atoms.append(residual)
+                for atom1 in residual:
+                    chain1_atoms.append(atom1)
         else:
             for residual in chain.get_residues():
-                for atom in residual:
-                    chain2_atoms.append(residual)
+                for atom2 in residual:
+                    chain2_atoms.append(atom2)
         return chain_comparison(chain1_atoms, chain2_atoms)
+        #return chain1_atoms, chain2_atoms
+    
     
 #se q sem ha anat la pinça, l altre manera que he pensat era un while sota els fors de procedure
 #pero primer he pensat en aixo i despres he pensat que aixi quedava mes ordenat
 
 
-#algo raro aqui sotaVVV, s ha de corretgir
 def chain_comparison(chain1_atoms, chain2_atoms):
     interface_residues=set()
     for a1 in chain1_atoms:
         for a2 in chain2_atoms:
             if a1.get_parent().id==a1.get_parent().id and a2.get_parent().id == a2.get_parent().id:
-                distance=a1-a2#unsuported operand
-                #nsupported operand type(s) for -: 'Residue' and 'Residue'
-                # a1=<Residue SER het=  resseq=19 icode= >
-                # a2=<Residue THR het=  resseq=333 icode= >
+                distance=a1-a2
+                #NO DISTANCES, WHY EMPTY
             if distance<=distance_treshold:
-                interface_residues.add(a1.get_parents().id[1])
-                interface_residues.add(a2.get_parents().id[1])
+                interface_residues.add(a1.get_parent().id[1])
+                interface_residues.add(a2.get_parent().id[1])
     return interface_residues
-
+#THIS BITCH EMPTY YEEEEt

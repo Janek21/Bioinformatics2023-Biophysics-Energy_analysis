@@ -19,8 +19,6 @@ def get_interface_residues(structure, chain1_id, chain2_id, distance_threshold):
 
 	return sorted(list(inter_res))
 
-
-
 # Load the structure (assuming 6m0j.pdb is in the same directory)
 parser = PDBParser(QUIET=True)
 structure = parser.get_structure("6m0j", "6m0j_fixed.pdb")
