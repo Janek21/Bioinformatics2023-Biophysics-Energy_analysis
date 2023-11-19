@@ -77,9 +77,9 @@ st_c._save_structure(args['output_structure_path'])
 
 
 ####STEP 1
-from step1_2 import chain_comparison, chain_atoms
-distance_treshold=2.3#QUINA ES?
-chain_atoms(structure)
+from step1_2 import *
+dt=7 #quin es el distance treshold?
+chain_atoms(structure, dt)
 
 
 ####STEP 2
