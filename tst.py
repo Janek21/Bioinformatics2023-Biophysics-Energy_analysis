@@ -5,7 +5,7 @@ model =structure[0]
 t=0
 chain1_atoms=[]
 chain2_atoms=[]
-distance_treshold=2.3#placeholder #QUINA ES??
+distance_treshold=7
             
 def chain_atoms(structure):
     model =structure[0]
@@ -24,21 +24,17 @@ def chain_atoms(structure):
                     chain2_atoms.append(atom2)
     return chain_comparison(chain1_atoms, chain2_atoms)
     
-    
-#se q sem ha anat la pinça, l altre manera que he pensat era un while sota els fors de procedure
-#pero primer he pensat en aixo i despres he pensat que aixi quedava mes ordenat
-
-
 def chain_comparison(chain1_atoms, chain2_atoms):
     interface_residues=set()
     for a1 in chain1_atoms:
         for a2 in chain2_atoms:
             if a1.get_parent().id==a1.get_parent().id and a2.get_parent().id == a2.get_parent().id:
                 distance=a1-a2
+                #NO DISTANCES, WHY EMPTY
             if distance<=distance_treshold:
                 interface_residues.add(a1.get_parent().id[1])
                 interface_residues.add(a2.get_parent().id[1])
     return interface_residues
 
-total_interface_residues=chain_atoms(structure)
-print(f"The interface residues are: {total_interface_residues}")
+int_re=chain_atoms(structure)
+print(f"Interface residues : {int_re}")
