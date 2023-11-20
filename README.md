@@ -20,16 +20,16 @@ Bio.PDB.PDBParser (from BioPython)
 ```
 Both this imports are necessary for the correct functioning of the code.
 
-##Processes code description
+## Processes code description
 
 Up nexts are the explanations for every step broken down of our [code](scripts.py)
-####Preparation steps
+#### Preparation steps
 
-####Step 1
+#### Step 1
 
-####Step 2
+#### Step 2
 
-####Step 3
+#### Step 3
 
 ####Step 4
 
