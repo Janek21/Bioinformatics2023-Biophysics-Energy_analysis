@@ -2,8 +2,7 @@
 
 """
     Initial setup a structure for Energy evaluation
-    To execute the script:python Step_2.py --rlib assignment_data/parameters_step2.lib --vdw assignment_data/parameters_vanderw.txt assignment_data/6m
-    0j.pdb
+    To execute the script --> python Step_2.py --rlib assignment_data/parameters_step2.lib --vdw assignment_data/parameters_vanderw.txt assignment_data/6m0j.pdb
 """
 import argparse
 import sys
