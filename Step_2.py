@@ -7,14 +7,13 @@ import argparse
 import sys
 
 from Bio.PDB.PDBParser import PDBParser
-from residue_library import ResiduesDataLib
-from forcefield import VdwParamset
+from modules_classes import ResiduesDataLib
+from modules_classes import VdwParamset
 
 parser = argparse.ArgumentParser(
     prog='structure_setup',
     description='basic structure setup'
 )
-
 
 parser.add_argument(
     '--rlib',
@@ -23,6 +22,7 @@ parser.add_argument(
     default='data/aaLib.lib',
     help='Residue Library'
 )
+
 parser.add_argument(
     '--vdw',
     action='store',
@@ -30,6 +30,7 @@ parser.add_argument(
     default='data/vdwprm',
     help='Vdw parameters'
 )
+
 parser.add_argument('pdb_file',help='Input PDB', type=open)
 
 args = parser.parse_args()
