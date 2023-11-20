@@ -2,6 +2,7 @@
 
 """
     Initial setup a structure for Energy evaluation
+    To execute the script --> python Step_2.py --rlib assignment_data/parameters_step2.lib --vdw assignment_data/parameters_vanderw.txt assignment_data/6m0j.pdb
 """
 import argparse
 import sys
@@ -27,11 +28,11 @@ parser.add_argument(
     '--vdw',
     action='store',
     dest='vdwprm_file',
-    default='assignment_data/parameters_vandew.txt',
+    default='assignment_data/parameters_vanderw.txt',
     help='Vdw parameters'
 )
 
-parser.add_argument('pdb_file',help='Input PDB', type=open)
+parser.add_argument('pdb_file', help='Input PDB', type=open)
 
 args = parser.parse_args()
 
