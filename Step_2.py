@@ -19,7 +19,7 @@ parser.add_argument(
     '--rlib',
     action='store',
     dest='reslib_file',
-    default='data/aaLib.lib',
+    default='assignment_data/parameters_step2.lib',
     help='Residue Library'
 )
 
@@ -27,7 +27,7 @@ parser.add_argument(
     '--vdw',
     action='store',
     dest='vdwprm_file',
-    default='data/vdwprm',
+    default='assignment_data/parameters_vandew.txt',
     help='Vdw parameters'
 )
 
