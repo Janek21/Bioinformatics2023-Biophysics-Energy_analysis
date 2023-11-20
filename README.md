@@ -20,25 +20,6 @@ Bio.PDB.PDBParser (from BioPython)
 ```
 Both this imports are necessary for the correct functioning of the code.
 
-## Processes code description
 
-Up nexts are the explanations for every step broken down of our [code](scripts.py)
-#### Preparation steps
-
-In the preparation step the structure of 6m0j is retrieved from PDB by using the ```parser.get_structure()``` imported before as stated in further dependencies.
-
-Then, using ```args``` it is checked at PDB the composition of a biological unit and all chains but the involved in the biological unit are removed.
-
-After this, the next step is the cleansing and checking of the structure, this is done with the ```StructureChecking``` and the ```args```. What we do with this step is remove all heteroatoms, fix the amides, the chirality and the backbone, detect and rebuild if there are missing protein chains and add hydrogens.
-
-After all this, the desired structure is correctly imported, stored and refined.
-
-#### Step 1
-
-#### Step 2
-
-#### Step 3
-
-#### Step 4
 
 
