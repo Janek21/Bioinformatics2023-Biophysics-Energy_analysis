@@ -1,4 +1,4 @@
-# Energy analysis exercise 2021-22
+# Energy analysis exercise 2023-24
 
 To be able to execute the code you will need the package biobb_structure_checking that can be installed through \$pip install "biobb_structure_checking\>=3.13.4"
 
@@ -10,7 +10,7 @@ This both modules are later used in step 2.
 
 #### [data](./assignment_data)
 
-In this directory is located all the necessary data that is used in the codes, like th e6m0j.pdb or the parameters_vanderw.txt.
+In this directory is located all the necessary data that is used in the codes, like the 6m0j.pdb or the parameters_vanderw.txt.
 
 #### Further Dependencies
 
@@ -20,7 +20,17 @@ Bio.PDB.PDBParser (from BioPython)
 ```
 Both this imports are necessary for the correct functioning of the code.
 
+##Processes code description
 
+Up nexts are the explanations for every step broken down of our [code](scripts.py)
+####Preparation steps
 
+####Step 1
+
+####Step 2
+
+####Step 3
+
+####Step 4
 
 
