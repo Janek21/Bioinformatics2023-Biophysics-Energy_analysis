@@ -27,11 +27,11 @@ parser.add_argument(
     '--vdw',
     action='store',
     dest='vdwprm_file',
-    default='assignment_data/parameters_vandew.txt',
+    default='assignment_data/parameters_vanderw.txt',
     help='Vdw parameters'
 )
 
-parser.add_argument('pdb_file',help='Input PDB', type=open)
+parser.add_argument('pdb_file', help='Input PDB', type=open)
 
 args = parser.parse_args()
 
