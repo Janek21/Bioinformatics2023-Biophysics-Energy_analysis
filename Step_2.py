@@ -15,7 +15,6 @@ parser = argparse.ArgumentParser(
     description='basic structure setup'
 )
 
-
 parser.add_argument(
     '--rlib',
     action='store',
@@ -23,6 +22,7 @@ parser.add_argument(
     default='data/aaLib.lib',
     help='Residue Library'
 )
+
 parser.add_argument(
     '--vdw',
     action='store',
@@ -30,6 +30,7 @@ parser.add_argument(
     default='data/vdwprm',
     help='Vdw parameters'
 )
+
 parser.add_argument('pdb_file',help='Input PDB', type=open)
 
 args = parser.parse_args()
