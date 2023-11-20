@@ -7,8 +7,8 @@ import argparse
 import sys
 
 from Bio.PDB.PDBParser import PDBParser
-from residue_library import ResiduesDataLib
-from forcefield import VdwParamset
+from modules_classes import ResiduesDataLib
+from modules_classes import VdwParamset
 
 parser = argparse.ArgumentParser(
     prog='structure_setup',
