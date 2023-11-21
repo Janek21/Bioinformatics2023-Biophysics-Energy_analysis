@@ -199,7 +199,7 @@ st = parser.get_structure('st', pdb_path)
 
 residue_library = ResiduesDataLib('/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_step2.lib')
 ff_params = VdwParamset('/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_vanderw.txt')
-NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS/nacess'
+NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS/naccess'
 srfA = NACCESS_atomic(st[0], naccess_binary=NACCESS_BINARY)
 
 add_atom_parameters(st, residue_library,ff_params)
@@ -218,7 +218,6 @@ for res in interface_residues_chainA:
     E, V = calc_int_energies(st, res)
     e+=E
     v+=V
-    break
 
 for res in interface_residues_chainE:
     s += calc_solvation(st[0], res)
@@ -226,7 +225,6 @@ for res in interface_residues_chainE:
     E, V = calc_int_energies(st, res)
     e+=E
     v+=V
-    break
 
 G = e + v + s - sA - sE
 print(G)
