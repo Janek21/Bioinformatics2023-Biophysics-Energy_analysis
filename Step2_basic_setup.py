@@ -58,7 +58,7 @@ st = parser.get_structure('STR', args.pdb_file.name)
 # We will use the xtra attribute in Bio.PDB.Atom to hold the new data
 # Possible errors on N-term and C-Term atoms
 # Possible errors on HIS alternative forms
-
+'''
 for at in st.get_atoms():
     resname = at.get_parent().get_resname()
     params = residue_library.get_params(resname, at.id)
@@ -67,9 +67,9 @@ for at in st.get_atoms():
     at.xtra['atom_type'] = params.at_type
     at.xtra['charge'] = params.charge
     at.xtra['vdw'] = ff_params.at_types[at.xtra['atom_type']]
-
+'''
 
 # Calculating surfaces
 # The specific PATH to naccess script (in soft) is needed
 # Srf goes to .xtra field directly
-srf = NACCESS_atomic(st[0], naccess_binary='/soft/NACCESS/naccess')
+srf = NACCESS_atomic(st[0], naccess_binary='/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS/naccess')
