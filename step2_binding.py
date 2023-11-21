@@ -14,7 +14,8 @@ from modules_classes import ResiduesDataLib
 from modules_classes import VdwParamset
 import step2_energies as en
 
-NACCESS_BINARY = '/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS'
+#n_input=str(input("Input path to soft/NACCESS(including this folder)"))
+NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS'
 
 parse_cmd = argparse.ArgumentParser(
 	prog='binding',
