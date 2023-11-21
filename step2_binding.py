@@ -83,6 +83,7 @@ srf = NACCESS_atomic(st[0], naccess_binary=NACCESS_BINARY)
 
 io = PDBIO()
 st_chains = {}
+
 # Using BioIO trick (see tutorial) to select chains
 class SelectChain(Select):
 	def __init__(self, chid):
@@ -146,6 +147,7 @@ for ch in st[0]:
 		totalSolv += solvAB[res]
 		totalSolvMon[ch.id] += solvA[res]
 		total += elec[res] + vdw[res] + solvAB[res] - solvA[res]
+
 print("Interaction energy based in interface residues only")
 print('{:20}: {:11.4f}'.format('Total Elec Int.', totalIntElec))
 print('{:20}: {:11.4f}'.format('Total Vdw Int.', totalIntVdw))
