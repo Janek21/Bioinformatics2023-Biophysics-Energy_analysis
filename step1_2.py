@@ -1,11 +1,6 @@
 from Bio.PDB import *
 parser=PDBParser()
-#structure= parser.get_structure("6m0j", "./assignment_data/6m0j_fixed.pdb")
-#model =structure[0]
-#t=0
-#chain1_atoms=[]
-#chain2_atoms=[]
-#distance_treshold=2.3#placeholder #QUINA ES??
+
             
 def chain_atoms(structure, dt):
     model =structure[0]
@@ -25,8 +20,7 @@ def chain_atoms(structure, dt):
     return chain_comparison(chain1_atoms, chain2_atoms, dt)
     
     
-#se q sem ha anat la pinça, l altre manera que he pensat era un while sota els fors de procedure
-#pero primer he pensat en aixo i despres he pensat que aixi quedava mes ordenat
+
 
 
 def chain_comparison(chain1_atoms, chain2_atoms, dt):
