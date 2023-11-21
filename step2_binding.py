@@ -14,7 +14,7 @@ from modules_classes import ResiduesDataLib
 from modules_classes import VdwParamset
 import step2_energies as en
 
-NACCESS_BINARY = './soft/NACCESS/naccess'
+NACCESS_BINARY = '/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS/naccess'
 
 parse_cmd = argparse.ArgumentParser(
 	prog='binding',
