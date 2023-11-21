@@ -10,6 +10,8 @@ import sys
 from Bio.PDB.PDBParser import PDBParser
 from modules_classes import ResiduesDataLib
 from modules_classes import VdwParamset
+from Bio.PDB.NACCESS import NACCESS_atomic
+
 
 parser = argparse.ArgumentParser(
     prog='structure_setup',
@@ -70,4 +72,4 @@ for at in st.get_atoms():
 # Calculating surfaces
 # The specific PATH to naccess script (in soft) is needed
 # Srf goes to .xtra field directly
-srf = NACCESS_atomic(st[0], naccess_binary='./soft/NACCESS/naccess')
+srf = NACCESS_atomic(st[0], naccess_binary='/soft/NACCESS/naccess')
