@@ -72,18 +72,13 @@ for at in st.get_atoms():
 # Calculating surfaces
 # The specific PATH to naccess script (in soft) is needed
 # Srf goes to .xtra field directly
-'''
-NACCESS_BINARY = '/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS'
-
-!sudo srf = NACCESS_atomic(st[0], naccess_binary = NACCESS_BINARY)
-'''
 
 import subprocess
 
-NACCESS_BINARY = '/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS'
+NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS'
 
 # Assuming st[0] is the argument you want to pass to your command
 command = f'sudo {NACCESS_BINARY} {st[0]}'
-
+import os
 # Run the command
-subprocess.run(command, shell=True)
+os.system(command)
