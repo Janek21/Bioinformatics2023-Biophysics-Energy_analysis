@@ -14,7 +14,7 @@ from modules_classes import ResiduesDataLib
 from modules_classes import VdwParamset
 import step2_energies as en
 
-NACCESS_BINARY = '/home/gelpi/DEVEL/Biophysics/soft/NACCESS/naccess'
+NACCESS_BINARY = '/soft/NACCESS/naccess'
 
 parse_cmd = argparse.ArgumentParser(
     prog='binding',
