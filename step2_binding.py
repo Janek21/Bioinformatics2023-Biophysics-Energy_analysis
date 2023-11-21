@@ -14,7 +14,7 @@ from modules_classes import ResiduesDataLib
 from modules_classes import VdwParamset
 import step2_energies as en
 
-NACCESS_BINARY = '/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS/naccess'
+NACCESS_BINARY = '/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS'
 
 parse_cmd = argparse.ArgumentParser(
 	prog='binding',
@@ -25,14 +25,14 @@ parse_cmd.add_argument(
 	'--rlib',
 	action='store',
 	dest='reslib_file',
-	default='data/aaLib.lib',
+	default='assignment_data/parameters_step2.lib',
 	help='Residue Library'
 )
 parse_cmd.add_argument(
 	'--vdw',
 	action='store',
 	dest='vdwprm_file',
-	default='data/vdwprm',
+	default='assignment_data/parameters_vanderw.txt',
 	help='Vdw parameters'
 )
 
