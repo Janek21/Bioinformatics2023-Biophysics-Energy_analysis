@@ -1,8 +1,9 @@
-#!/usr/bin/python3
+
 
 """
 	Initial setup a structure for Energy evaluation
 """
+
 import argparse
 import os
 
@@ -15,7 +16,7 @@ from modules_classes import VdwParamset
 import step2_energies as en
 
 #n_input=str(input("Input path to soft/NACCESS(including this folder)"))
-NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS'
+NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS/naccess'
 
 parse_cmd = argparse.ArgumentParser(
 	prog='binding',
@@ -26,14 +27,14 @@ parse_cmd.add_argument(
 	'--rlib',
 	action='store',
 	dest='reslib_file',
-	default='assignment_data/parameters_step2.lib',
+	default='/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_step2.lib',
 	help='Residue Library'
 )
 parse_cmd.add_argument(
 	'--vdw',
 	action='store',
 	dest='vdwprm_file',
-	default='assignment_data/parameters_vanderw.txt',
+	default='/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_vanderw.txt',
 	help='Vdw parameters'
 )
 
@@ -54,6 +55,7 @@ print("Residue Lib.:", args.reslib_file)
 print("PDB.filename:", args.vdwprm_file)
 print("Distance:", args.cutoff_dist)
 
+
 # Loading Libraries
 # loading residue library from data/aaLib.lib
 residue_library = ResiduesDataLib(args.reslib_file)
@@ -66,6 +68,7 @@ print('Parsing', args.pdb_file)
 # load structure from PDB file of PDB ifle handler
 st = parser.get_structure('STR', args.pdb_file.name)
 
+
 # assign data types, and charges from libraries
 # We will use the xtra attribute in Bio.PDB.Atom to hold the new data
 # Possible errors on N-term and C-Term atoms
@@ -73,11 +76,13 @@ st = parser.get_structure('STR', args.pdb_file.name)
 
 en.add_atom_parameters(st, residue_library, ff_params)
 
+
 # Calculating surfaces
 # The specific PATH to naccess script (in soft) is needed
 # ASA goes to .xtra field directly
 
 srf = NACCESS_atomic(st[0], naccess_binary=NACCESS_BINARY)
+
 
 # Prepare surfaces for the separate chains
 # Alternatively the twp PDB files can be prepared outside and parsed here
@@ -132,7 +137,7 @@ for ch in st[0]:
 	totalSolvMon[ch.id] = 0
 
 total = 0.
-
+lt=[]
 for ch in st[0]:
 	for res in ch.get_residues():
 		if args.cutoff_dist > 0 and res not in interface[ch.id]:
@@ -158,6 +163,7 @@ print('{:19}{}: {:11.4f}'.format('Total Solv ', chids[1], totalSolvMon[chids[1]]
 print('{:20}: {:11.4f}'.format('DGintAB-A-B', total))
 print("\#R {} {:11.4f} {:11.4f} {:11.4f} {:11.4f} {:11.4f} {:11.4f}".format(args.pdb_file.name, totalIntElec, totalIntVdw, totalSolv, totalSolvMon[chids[0]], totalSolvMon[chids[1]], total))
 #Ala scanning not required. Finishing here
+
 import sys
 sys.exit()
 
@@ -177,3 +183,4 @@ for ch in st[0]:
 					solvAB_ala[res] -solvA[res] + solvA_ala[res]
 			)
 		)
+
