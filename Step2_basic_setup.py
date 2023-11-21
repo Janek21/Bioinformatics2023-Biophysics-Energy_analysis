@@ -79,6 +79,5 @@ NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophy
 
 # Assuming st[0] is the argument you want to pass to your command
 command = f'sudo {NACCESS_BINARY} {st[0]}'
-import os
-# Run the command
-os.system(command)
+# Run the com/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESSmand
+subprocess.run(command, shell=True)

@@ -1,18 +1,18 @@
-#!/bin/csh
-set EXE_PATH =/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS
+#!/bin/csh 
+set EXE_PATH = /home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS
 #naccess_start
 #
 # The preceding line should be editted to point to
-# the directory containing the execuable and default
+# the directory containing the execuable and default 
 # vdw.radii file if things don't work properly.
 #
-# naccess - run the accessibility program
+# naccess - run the accessibility program  
 #
 set nargs = $#argv
 if ( $nargs < 1 ) then
    echo "usage naccess pdb_file [-p probe_size] [-r vdw_file] [-s stdfile] [-z zslice] -[hwyfaclqb]"
    exit(1)
-endif
+endif    
 #
 # options:
 #      -p = probe size (next arg probe size)
@@ -39,7 +39,7 @@ set wats = 0
 set hyds = 0
 set full = 0
 set asao = 0
-set cont = 0
+set cont = 0 
 set oldr = 0
 set nbac = 0
 
@@ -66,8 +66,8 @@ while ( $#argv )
 	echo " "
         exit
         breaksw
-     case -[pP]:
-	shift
+     case -[pP]:	
+	shift 	
 	set probe = $argv[1]
 	breaksw
      case -[zZ]:
@@ -156,12 +156,12 @@ if ( $STDFILE != 0 && ! -e $STDFILE ) then
    set STDFILE = 0
 endif
 if ( $STDFILE == 0 && -e standard.data ) then
-  echo "naccess: using STD FILE in local directory"
+  echo "naccess: using STD FILE in local directory"	
   set STDFILE = standard.data
 endif
 if ( $STDFILE == 0 && -e $EXE_PATH/standard.data ) then
   set STDFILE = $EXE_PATH/standard.data
-  echo "naccess: using default STD FILE"
+  echo "naccess: using default STD FILE"	
 endif
 if ( $STDFILE == 0 ) then
   echo "naccess: ERROR: No STD FILE ! Lets wing it anyway"
@@ -205,5 +205,5 @@ $EXE_PATH/accall < accall.input
 #
 # delete temporary input file
 #
-\rm accall.input
+\rm accall.input 
 #naccess_end
