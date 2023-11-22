@@ -1,6 +1,4 @@
 
-#EXECUTE IN TERMINAL, NOT VISUAL
-#OTEHRWISE FOLLOW STEPS IN LINE 18
 
 # Getting basic libraries:
 import os, sys, math
@@ -13,6 +11,7 @@ import biobb_structure_checking.constants as cts
 from biobb_structure_checking.structure_checking import StructureChecking
 base_dir_path=biobb_structure_checking.__path__[0]
 args = cts.set_defaults(base_dir_path,{'notebook':True})
+dir = str(input("Input working directory: "))
 
 ###Preparation
 
@@ -23,7 +22,7 @@ structure = parser.get_structure("6m0j",f)
 
     #2 Check at PDB which is the composition of a “Biological unit”.
 # Remove all chains but those involved in the biological unit, if necessary
-base_path = './assignment_data/'
+base_path = dir+'./assignment_data/'
 args['output_format'] = "pdb"
 args['keep_canonical'] = False
 args['input_structure_path'] = base_path + '6m0j.cif'
@@ -74,7 +73,7 @@ st_c._save_structure(args['output_structure_path'])
 #st_c.rem_hydrogen('yes')
 #st_c.add_hydrogen('--add_charges --add_mode auto')
 #st_c._save_structure(args['output_structure_path_charges'])
-
+f.close()
 
 ####STEP 1
 #finding out atoms in both chains
@@ -108,8 +107,7 @@ def chain_comparison(chain1_atoms, chain2_atoms, dt):
     return interface_residues
 
 dt=5 #distance treshold
-chain_atoms(structure, dt)
-
+print(chain_atoms(structure, dt))
 
 ####STEP 2
 
@@ -131,14 +129,14 @@ from Bio.PDB.PDBIO import PDBIO, Select
 from modules_classes import *
 
 # loading residue library from data/aaLib.lib
-res_lib = ResiduesDataLib('./assignment_data/parameters_vanderw.txt')
+res_lib = ResiduesDataLib(dir+'/assignment_data/parameters_vanderw.txt')
 # loading VdW parameters
-ff_params = VdwParamset('./assignment_data/parameters_step2.txt')
+ff_params = VdwParamset(dir+'/assignment_data/parameters_step2.txt')
 
 #PQ NO VA?
 
 # set the pdb_path and load the structure
-pdb_path = "./assignment_data/6m0j_fixed.pdb"
+pdb_path = dir+"/assignment_data/6m0j_fixed.pdb"
 # Setting the Bio.PDB.Parser object
 parser = PDBParser(PERMISSIVE=1)
 # Loading structure
@@ -164,7 +162,7 @@ def add_atom_parameters(st, res_lib, ff_params):
 
 add_atom_parameters(st, res_lib, ff_params)
 
-f.close()
+
 
 # ----------------------------------------------------------------
 
@@ -189,8 +187,6 @@ from modules_classes import VdwParamset
 import library_energy_step3 as en
 
 # Loading Libraries
-# loading residue library from data/aaLib.lib
-dir = os.getcwd()
 
 residue_library = ResiduesDataLib(dir+'/assignment_data/parameters_step2.lib')
 
