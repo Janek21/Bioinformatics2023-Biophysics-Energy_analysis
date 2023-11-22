@@ -19,7 +19,12 @@ Bio.PDB.NeighborSearch (from BioPython)
 Bio.PDB.PDBParser (from BioPython)
 ```
 Both this imports are necessary for the correct functioning of the code.
+The better course of action would be
+```
+from Bio.PDB import *
+```
 
 
-#### code execution
-For running our code, you have to execute biophysics_project.ipynb
+#### Code execution
+Our code can be found in the jupyter notebook named biophysics_project.ipynb
+Another option is to execute the python script named scripts.py
