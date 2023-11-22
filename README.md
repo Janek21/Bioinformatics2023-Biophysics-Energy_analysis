@@ -26,6 +26,8 @@ The better course of action would be
 from Bio.PDB import *
 ```
 
+In order for it to work properly you have to change the path of the NACCESS to your own.
+
 
 #### Code execution
 Our code can be found in the jupyter notebook named biophysics_project.ipynb
