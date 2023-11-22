@@ -1,16 +1,18 @@
 from Bio.PDB import *
 from modules_classes import *
-from D_step2_method2_modules import *
+from Step2_modules import *
 
-pdb_path = "./assignment_data/6m0j_fixed.pdb"
+dir = str(input("Input working directory: "))
+
+pdb_path = dir+"/assignment_data/6m0j_fixed.pdb"
 parser = PDBParser(PERMISSIVE=1)
 structure = parser.get_structure('st', pdb_path)
 dt=5
 st=structure
 
-residue_library = ResiduesDataLib('./assignment_data/parameters_step2.lib')
-ff_params = VdwParamset('./assignment_data/parameters_vanderw.txt')
-NACCESS_BINARY = '/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS/naccess'
+residue_library = ResiduesDataLib(dir+"/assignment_data/parameters_step2.lib")
+ff_params = VdwParamset(dir+"/assignment_data/parameters_vanderw.txt")
+NACCESS_BINARY = dir+"/soft/NACCESS/naccess"
 srfA = NACCESS_atomic(st[0], naccess_binary=NACCESS_BINARY)
 
 add_atom_parameters(st, residue_library,ff_params)
