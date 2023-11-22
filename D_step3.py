@@ -107,7 +107,7 @@ os.remove('tmp.pdb')
 
 ## Interface residues
 if args.cutoff_dist > 0.:
-	interface = chain_atoms2(structure, dt)
+	interface = en.get_interface(st, args.cutoff_dist)
 
 ## Initiatlize Energy aggregates
 elec = {}
@@ -126,6 +126,7 @@ totalIntElec = 0.
 totalIntVdw = 0.
 totalSolv = 0.
 totalSolvMon = {}
+
 ## We get the chsin ids,not always they are A and B
 chids = []
 for ch in st[0]:
@@ -134,10 +135,7 @@ for ch in st[0]:
 
 total = 0.
 
-from Bio.PDB import *
-from modules_classes import *
-from S2m3_module2 import *
-from S2m3 import *
+
 print(f'\nInteraction energy based in interface residues ONLY')
 
 with open("inter_en_res.tsv", "w") as file:
@@ -166,7 +164,7 @@ with open("inter_en_res.tsv", "w") as file:
 				))
 			
 			file.write(
-				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
+				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
 					en.residue_id(res),
 					elec[res], vdw[res], solvAB[res], solvA[res],
 					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
@@ -182,7 +180,6 @@ print('{:19}{}: {:11.4f}'.format('Total Solv ', chids[1], totalSolvMon[chids[1]]
 print('{:20}: {:11.4f}'.format('DGintAB-A-B', total))
 print("")
 
-print("Ala Scanning: DDGs for X->Ala mutations on interface residues")
 print(
 	'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}'.format(
 		'res_id',
@@ -194,7 +191,7 @@ print(
 	)
 )
 
-print(f'\nWriting in file: ala_scaning.tsv')
+print(f'\nAla Scanning: DDGs for X->Ala mutations on interface residues and Writing in file: ala_scaning.tsv')
 with open("ala_scaning.tsv", "w") as file:
 	file.write(
 		'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}\n'.format(
@@ -204,6 +201,15 @@ with open("ala_scaning.tsv", "w") as file:
 		'solvAB',
 		'solv',
 		'total'))
+
+	print(
+		'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}'.format(
+			'res_id',
+			'elec',
+			'vdw',
+			'solvAB',
+			'solv',
+			'total'))
 	
 	for ch in st[0]:
 		for res in ch.get_residues():
@@ -211,8 +217,8 @@ with open("ala_scaning.tsv", "w") as file:
 				continue
 
 			print(
-				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
-					residue_id(res),
+				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
+					en.residue_id(res),
 					- elec[res] + elec_ala[res],
 					- vdw[res] + vdw_ala[res],
 					- solvAB[res] + solvAB_ala[res],
@@ -222,24 +228,12 @@ with open("ala_scaning.tsv", "w") as file:
 
 			file.write(
 				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
-					residue_id(res),
+					en.residue_id(res),
 					- elec[res] + elec_ala[res],
-		   		 	- vdw[res] + vdw_ala[res],
-		  		  	- solvAB[res] + solvAB_ala[res],
-		  		  	- solvA[res] + solvA_ala[res],
-		  		  	- elec[res] + elec_ala[res] - vdw[res] + vdw_ala[res] -solvAB[res] +\
-		  			solvAB_ala[res] -solvA[res] + solvA_ala[res]
+		   		 - vdw[res] + vdw_ala[res],
+		  		  - solvAB[res] + solvAB_ala[res],
+		  		  - solvA[res] + solvA_ala[res],
+		  		  - elec[res] + elec_ala[res] - vdw[res] + vdw_ala[res] -solvAB[res] +\
+		  			  solvAB_ala[res] -solvA[res] + solvA_ala[res]
 		  	  )
 	  	  )
-
-'''
-# Calculate the  effect of replacing each residue by an alanine
-with open("ala_scanning.txt", "a") as alanine:
-	for ch in st[0]:
-		for res in ch.get_residues():
-			if max_dist > 0 and res not in interface[ch.id]:
-				continue
-			print('{:1}, {:1.4}'.format(residue_id(res), 
-					- elec[res] + elec_ala[res] - vdw[res] + vdw_ala[res] - solvAB[res] +\
-						solvAB_ala[res] -solvA[res] + solvA_ala[res]), file = alanine)
-'''
