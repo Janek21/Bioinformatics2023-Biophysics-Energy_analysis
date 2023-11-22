@@ -1,6 +1,6 @@
 from Bio.PDB import *
 from modules_classes import *
-from S2m3_module2 import *
+from D_step2_method2_modules import *
 
 pdb_path = "./assignment_data/6m0j_fixed.pdb"
 parser = PDBParser(PERMISSIVE=1)
