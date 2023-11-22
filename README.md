@@ -21,6 +21,5 @@ Bio.PDB.PDBParser (from BioPython)
 Both this imports are necessary for the correct functioning of the code.
 
 
-#### [code](scrips.py) execution
-
-In this file there are all the steps together so the execution of this file should be enough
+#### code execution
+For running our code, you have to execute biophysics_project.ipynb
