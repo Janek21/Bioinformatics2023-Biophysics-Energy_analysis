@@ -1,5 +1,5 @@
 #!/bin/csh 
-set EXE_PATH = /home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS
+set EXE_PATH = /home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS
 #naccess_start
 #
 # The preceding line should be editted to point to

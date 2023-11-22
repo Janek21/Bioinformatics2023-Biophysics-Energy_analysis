@@ -16,7 +16,7 @@ from modules_classes import VdwParamset
 import step2m2_energies as en
 
 #n_input=str(input("Input path to soft/NACCESS(including this folder)"))
-NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS/naccess'
+NACCESS_BINARY = './soft/NACCESS/naccess'
 
 parse_cmd = argparse.ArgumentParser(
 	prog='binding',
@@ -27,14 +27,14 @@ parse_cmd.add_argument(
 	'--rlib',
 	action='store',
 	dest='reslib_file',
-	default='/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_step2.lib',
+	default='./assignment_data/parameters_step2.lib',
 	help='Residue Library'
 )
 parse_cmd.add_argument(
 	'--vdw',
 	action='store',
 	dest='vdwprm_file',
-	default='/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_vanderw.txt',
+	default='./assignment_data/parameters_vanderw.txt',
 	help='Vdw parameters'
 )
 
@@ -42,7 +42,7 @@ parse_cmd.add_argument(
 	'--dist',
 	action='store',
 	dest='cutoff_dist',
-	default=8.0,
+	default=5.0,
 	type=float,
 	help='Cutoff distance for determining the interface (0: use all residues):'
 )
