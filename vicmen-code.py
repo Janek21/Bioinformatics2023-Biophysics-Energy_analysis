@@ -79,24 +79,16 @@ class VdwParamset(): #extracted from GELPI's github
 def get_interface_residues(st, id1, id2, distance):
     interface_chain1 = set()
     interface_chain2 = set()
-
     chain1 = st[0][id1]    ## Get the desired chains from the protein
     chain2 = st[0][id2]
-
     NeighborSearch_chain2 = NeighborSearch(list(chain2.get_atoms()))    ## Prepare the Neighbour search for chain E
-
     for res_chain1 in chain1:
         for atom_chain1 in res_chain1:    ## Iterate over all the atoms from chain A
-
             Neighbor_atom_chain2 = NeighborSearch_chain2.search(atom_chain1.coord, distance)    ## Look for atoms in chain E within the distance from the atom in chain A
-
             for atom_chain2 in Neighbor_atom_chain2:    ## Itarate over the atoms we know they are within the distance
-
                 res_chain2 = atom_chain2.get_parent()   ## Get the residues to which the atom belongs to
-
                 interface_chain1.add(res_chain1)        ## Use a set to only save each residue once
                 interface_chain2.add(res_chain2)
-
     return list(interface_chain1), list(interface_chain2)    ## Return the list for each chain
 
 
@@ -122,6 +114,7 @@ def MH_diel(r):
 
 def elec_int(at1, at2, r):
     '''Electrostatic interaction energy between two atoms at r distance'''
+    print(at1.xtra['charge'])
     return 332.16 * at1.xtra['charge'] * at2.xtra['charge'] / MH_diel(r) / r
 
 def vdw_int(at1, at2, r):
@@ -197,9 +190,9 @@ pdb_path = "/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/B
 parser = PDBParser(PERMISSIVE=1)
 st = parser.get_structure('st', pdb_path)
 
-residue_library = ResiduesDataLib('/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_step2.lib')
-ff_params = VdwParamset('/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_vanderw.txt')
-NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS/naccess'
+residue_library = ResiduesDataLib('./assignment_data/parameters_step2.lib')
+ff_params = VdwParamset('./assignment_data/parameters_vanderw.txt')
+NACCESS_BINARY = './soft/NACCESS/naccess'
 srfA = NACCESS_atomic(st[0], naccess_binary=NACCESS_BINARY)
 
 add_atom_parameters(st, residue_library,ff_params)

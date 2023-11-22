@@ -13,7 +13,7 @@ from Bio.PDB.PDBIO import PDBIO, Select
 
 from modules_classes import ResiduesDataLib
 from modules_classes import VdwParamset
-import step2_energies as en
+import step2m2_energies as en
 
 #n_input=str(input("Input path to soft/NACCESS(including this folder)"))
 NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS/naccess'

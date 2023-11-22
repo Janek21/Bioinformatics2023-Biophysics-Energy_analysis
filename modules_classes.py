@@ -8,6 +8,15 @@ from Bio.PDB.NACCESS import NACCESS_atomic
 from Bio.PDB.NeighborSearch import NeighborSearch
 from Bio.PDB.PDBIO import PDBIO, Select
 
+def residue_id(res):
+    '''Returns readable residue id'''
+    return '{} {}{}'.format(res.get_resname(), res.get_parent().id, res.id[1])
+
+def atom_id(at):
+    '''Returns readable atom id'''
+    return '{}.{}'.format(residue_id(at.get_parent()), at.id)
+
+
 class ResiduesDataLib():
     def __init__(self, fname):
         self.residue_data = {}
