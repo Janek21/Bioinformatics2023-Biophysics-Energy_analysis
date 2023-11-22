@@ -50,6 +50,11 @@ def calc(chain1_atoms, chain2_atoms):
         e+=E
         v+=V
     G = e + v + s - sA - sE
-    return(G)
+    print("Electrostatic interactions:", e)
+    print("Van der Waals interactions", v)
+    print("Solvation A-B complex:", s)
+    print("Solvation of A:", sA)
+    print("Solvation of B", sE)
+    return("Interaction energy between components in A-B complex:",G)
 
 print(chain_atoms(structure, dt))

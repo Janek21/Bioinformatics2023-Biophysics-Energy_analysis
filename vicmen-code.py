@@ -190,9 +190,9 @@ pdb_path = "/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/B
 parser = PDBParser(PERMISSIVE=1)
 st = parser.get_structure('st', pdb_path)
 
-residue_library = ResiduesDataLib('./assignment_data/parameters_step2.lib')
-ff_params = VdwParamset('./assignment_data/parameters_vanderw.txt')
-NACCESS_BINARY = './soft/NACCESS/naccess'
+residue_library = ResiduesDataLib('/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_step2.lib')
+ff_params = VdwParamset('/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/assignment_data/parameters_vanderw.txt')
+NACCESS_BINARY = '/home/jj/Desktop/Bioinformatics/Github/Bioinformatics_p/Biophysics/Biophysics_A1/soft/NACCESS/naccess'
 srfA = NACCESS_atomic(st[0], naccess_binary=NACCESS_BINARY)
 
 add_atom_parameters(st, residue_library,ff_params)
