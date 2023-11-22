@@ -186,7 +186,7 @@ from Bio.PDB.PDBIO import PDBIO, Select
 
 from modules_classes import ResiduesDataLib
 from modules_classes import VdwParamset
-import step2m2_energies as en
+import library_energy_step3 as en
 
 # Loading Libraries
 # loading residue library from data/aaLib.lib
