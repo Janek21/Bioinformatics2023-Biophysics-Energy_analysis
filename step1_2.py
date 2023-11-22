@@ -19,9 +19,6 @@ def chain_atoms(structure, dt):
                     chain2_atoms.append(atom2)
     return chain_comparison(chain1_atoms, chain2_atoms, dt)
     
-    
-
-
 
 def chain_comparison(chain1_atoms, chain2_atoms, dt):
     interface_residues=set()
