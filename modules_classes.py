@@ -56,8 +56,7 @@ class AtomType():
         self.fsrf = float(data[4])
         self.rvdw = self.sig * 0.5612
         
-class VdwParamset(): #extracted from GELPI's github
-    #parameters for the VdW
+class VdwParamset():
     def __init__ (self, file_name):
         self.at_types = {}
         try:
