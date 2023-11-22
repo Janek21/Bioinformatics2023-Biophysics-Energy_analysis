@@ -6,6 +6,8 @@ To be able to execute the code you will need the package biobb_structure_checkin
 
 This file contains the modules needed for step 2, these are force fields module, that is used to manage the force field parameters and the residue library module, that is used to manage the residue library.
 
+We also have an additional file, called [deprecated code](Deprecated_code) where it is stored all the versions of the functions used in the code before merging it all in the script.py
+
 This both modules are later used in step 2.
 
 #### [data](./assignment_data)
