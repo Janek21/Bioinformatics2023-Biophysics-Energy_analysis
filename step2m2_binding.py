@@ -16,7 +16,7 @@ from modules_classes import VdwParamset
 import step2m2_energies as en
 
 #n_input=str(input("Input path to soft/NACCESS(including this folder)"))
-NACCESS_BINARY = './soft/NACCESS/naccess'
+NACCESS_BINARY = '/home/jaume/Desktop/Year_2/Biophysics/Project:Energy_Analysis/Biophysics_A1/soft/NACCESS/naccess'
 
 parse_cmd = argparse.ArgumentParser(
 	prog='binding',

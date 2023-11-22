@@ -154,12 +154,14 @@ with open("inter_en_res.tsv", "w") as file:
 			totalSolv += solvAB[res]
 			totalSolvMon[ch.id] += solvA[res]
 			total += elec[res] + vdw[res] + solvAB[res] - solvA[res]
+
 			print(
 				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
 					en.residue_id(res),
 					elec[res], vdw[res], solvAB[res], solvA[res],
 					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
 				))
+			
 			file.write(
 				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
 					en.residue_id(res),
@@ -189,6 +191,7 @@ print(
 	)
 )
 
+'''
 for ch in st[0]:
 	for res in ch.get_residues():
 		if args.cutoff_dist > 0 and res not in interface[ch.id]:
@@ -204,7 +207,7 @@ for ch in st[0]:
 					solvAB_ala[res] -solvA[res] + solvA_ala[res]
 			)
 		)
-
+'''
 
 print(f'\nWriting in file: ala_scaning.tsv')
 with open("ala_scaning.tsv", "w") as file:
@@ -216,10 +219,22 @@ with open("ala_scaning.tsv", "w") as file:
 		'solvAB',
 		'solv',
 		'total'))
+	
 	for ch in st[0]:
 		for res in ch.get_residues():
 			if args.cutoff_dist > 0 and res not in interface[ch.id]:
 				continue
+
+			print(
+				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
+					en.residue_id(res),
+					- elec[res] + elec_ala[res],
+					- vdw[res] + vdw_ala[res],
+					- solvAB[res] + solvAB_ala[res],
+					- solvA[res] + solvA_ala[res],
+					- elec[res] + elec_ala[res] - vdw[res] + vdw_ala[res] -solvAB[res] +\
+					solvAB_ala[res] -solvA[res] + solvA_ala[res]))
+
 			file.write(
 				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
 					en.residue_id(res),
@@ -243,4 +258,3 @@ with open("ala_scanning.txt", "a") as alanine:
 					- elec[res] + elec_ala[res] - vdw[res] + vdw_ala[res] - solvAB[res] +\
 						solvAB_ala[res] -solvA[res] + solvA_ala[res]), file = alanine)
 '''
-
