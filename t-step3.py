@@ -136,28 +136,38 @@ total = 0.
 
 
 print(f'\nInteraction energy based in interface residues ONLY')
-for ch in st[0]:
-	for res in ch.get_residues():
-		if args.cutoff_dist > 0 and res not in interface[ch.id]:
-			continue
-		elec[res], elec_ala[res], vdw[res], vdw_ala[res] = en.calc_int_energies(st[0], res)
-		solvAB[res], solvAB_ala[res] = en.calc_solvation(st[0], res)
-		solvA[res], solvA_ala[res] = en.calc_solvation(
-			st_chains[ch.id],
-			st_chains[ch.id][0][ch.id][res.id[1]]
-		)
-		totalIntElec += elec[res]
-		totalIntVdw += vdw[res]
-		totalSolv += solvAB[res]
-		totalSolvMon[ch.id] += solvA[res]
-		total += elec[res] + vdw[res] + solvAB[res] - solvA[res]
-		print(
-			'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
-				en.residue_id(res),
-				elec[res], vdw[res], solvAB[res], solvA[res],
-				elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
+
+with open("inter_en_res.tsv", "w") as file:
+
+	for ch in st[0]:
+		for res in ch.get_residues():
+			if args.cutoff_dist > 0 and res not in interface[ch.id]:
+				continue
+			elec[res], elec_ala[res], vdw[res], vdw_ala[res] = en.calc_int_energies(st[0], res)
+			solvAB[res], solvAB_ala[res] = en.calc_solvation(st[0], res)
+			solvA[res], solvA_ala[res] = en.calc_solvation(
+				st_chains[ch.id],
+				st_chains[ch.id][0][ch.id][res.id[1]]
 			)
-		)
+			totalIntElec += elec[res]
+			totalIntVdw += vdw[res]
+			totalSolv += solvAB[res]
+			totalSolvMon[ch.id] += solvA[res]
+			total += elec[res] + vdw[res] + solvAB[res] - solvA[res]
+			print(
+				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
+					en.residue_id(res),
+					elec[res], vdw[res], solvAB[res], solvA[res],
+					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
+				))
+			file.write(
+				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
+					en.residue_id(res),
+					elec[res], vdw[res], solvAB[res], solvA[res],
+					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
+				)
+			)
+
 print(f'\nTOTAL ENERGIES of interaction energy based in interface residues ONLY')
 print('{:20}: {:11.4f}'.format('Total Elec Int.', totalIntElec))
 print('{:20}: {:11.4f}'.format('Total Vdw Int.', totalIntVdw))
@@ -195,10 +205,11 @@ for ch in st[0]:
 			)
 		)
 
+
 print(f'\nWriting in file: ala_scaning.tsv')
 with open("ala_scaning.tsv", "w") as file:
 	file.write(
-		'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}'.format(
+		'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}\n'.format(
 		'res_id',
 		'elec',
 		'vdw',
@@ -210,7 +221,7 @@ with open("ala_scaning.tsv", "w") as file:
 			if args.cutoff_dist > 0 and res not in interface[ch.id]:
 				continue
 			file.write(
-				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
+				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
 					en.residue_id(res),
 					- elec[res] + elec_ala[res],
 		   		 - vdw[res] + vdw_ala[res],
