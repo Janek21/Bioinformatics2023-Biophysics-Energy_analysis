@@ -17,45 +17,6 @@ from modules_classes import ResiduesDataLib
 from modules_classes import VdwParamset
 import step2m2_energies as en
 
-'''
-parse_cmd = argparse.ArgumentParser(
-	prog='structure_setup',
-	description='basic structure setup'
-)
-
-parse_cmd.add_argument(
-	'--rlib',
-	action='store',
-	dest='reslib_file',
-	default='./assignment_data/parameters_step2.lib',
-	help='Residue Library'
-)
-parse_cmd.add_argument(
-	'--vdw',
-	action='store',
-	dest='vdwprm_file',
-	default='./assignment_data/parameters_vanderw.txt',
-	help='Vdw parameters'
-)
-
-parse_cmd.add_argument(
-	'--dist',
-	action='store',
-	dest='cutoff_dist',
-	default=5.0,
-	type=float,
-	help='Cutoff distance for determining the interface (0: use all residues):'
-)
-parse_cmd.add_argument('pdb_file', help='Input PDB', type=open)
-
-args = parse_cmd.parse_args()
-
-print("PDB.filename:", args.pdb_file.name)
-print("Residue Lib.:", args.reslib_file)
-print("PDB.filename:", args.vdwprm_file)
-print("Distance:", args.cutoff_dist)
-'''
-
 # Loading Libraries
 # loading residue library from data/aaLib.lib
 dir = os.getcwd()
@@ -66,7 +27,7 @@ residue_library = ResiduesDataLib(dir+'/assignment_data/parameters_step2.lib')
 ff_params = VdwParamset(dir+'/assignment_data/parameters_vanderw.txt')
 
 # Important variables:
-pdb_file = dir+"assignment_data/6m0j_fixed.pdb"
+pdb_file = dir+'/assignment_data/6m0j_fixed.pdb'
 cutoff_dist = 5.0
 NACCESS_BINARY = dir+'/soft/NACCESS/naccess'
 
@@ -115,7 +76,7 @@ for ch in st[0]:
 os.remove('tmp.pdb')
 
 ## Interface residues
-if args.cutoff_dist > 0.:
+if cutoff_dist > 0.:
 	interface = en.get_interface(st, cutoff_dist)
 
 ## Initiatlize Energy aggregates
@@ -147,7 +108,23 @@ total = 0.
 
 print(f'\nInteraction energy based in interface residues ONLY')
 
-with open("inter_en_res.tsv", "w") as file:
+with open("inter_en_res.csv", "w") as file:
+
+	print(
+		'D#{:11}  {:11s} {:11s} {:11s} {:11s} | {:11s} {:11s} {:11s} {:11s}'.format(
+			'res_id,',
+			'elec_res', 'vdw_res', 'solv_AB_res', 'solv_A_res',
+			'elec_ala', 'vdw_ala', 'solv_AB_ala', 'solv_A_ala'
+		)
+	)
+
+	file.write(
+		'D#{:11},{:11s},{:11s},{:11s},{:11s}, - ,{:11s},{:11s},{:11s},{:11s}\n'.format(
+			'res_id',
+			'elec_res', 'vdw_res', 'solv_AB_res', 'solv_A_res',
+			'elec_ala', 'vdw_ala', 'solv_AB_ala', 'solv_A_ala'
+		)
+	)
 
 	for ch in st[0]:
 		for res in ch.get_residues():
@@ -166,14 +143,14 @@ with open("inter_en_res.tsv", "w") as file:
 			total += elec[res] + vdw[res] + solvAB[res] - solvA[res]
 
 			print(
-				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
+				'D#{:11}  {:11.4f} {:11.4f} {:11.4f} {:11.4f} | {:11.4f} {:11.4f} {:11.4f} {:11.4f}'.format(
 					en.residue_id(res),
 					elec[res], vdw[res], solvAB[res], solvA[res],
 					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
 				))
 			
 			file.write(
-				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
+				'D#{:11},{:11.4f},{:11.4f},{:11.4f},{:11.4f}, - ,{:11.4f},{:11.4f},{:11.4f},{:11.4f}\n'.format(
 					en.residue_id(res),
 					elec[res], vdw[res], solvAB[res], solvA[res],
 					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
@@ -187,23 +164,13 @@ print('{:20}: {:11.4f}'.format('Total Solv AB', totalSolv))
 print('{:19}{}: {:11.4f}'.format('Total Solv ', chids[0], totalSolvMon[chids[0]]))
 print('{:19}{}: {:11.4f}'.format('Total Solv ', chids[1], totalSolvMon[chids[1]]))
 print('{:20}: {:11.4f}'.format('DGintAB-A-B', total))
-print("")
+print('\nWritting done in file: inter_en_res.tsv\n\n')
 
-print(
-	'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}'.format(
-		'res_id',
-		'elec',
-		'vdw',
-		'solvAB',
-		'solv',
-		'total'
-	)
-)
 
-print(f'\nAla Scanning: DDGs for X->Ala mutations on interface residues and Writing in file: ala_scaning.tsv')
-with open("ala_scaning.tsv", "w") as file:
+print(f'\nAla Scanning: DDGs for X->Ala mutations on interface residues')
+with open("ala_scaning.csv", "w") as file:
 	file.write(
-		'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}\n'.format(
+		'{:11},{:11s},{:11s},{:11s},{:11s},{:11s}\n'.format(
 		'res_id',
 		'elec',
 		'vdw',
@@ -212,7 +179,7 @@ with open("ala_scaning.tsv", "w") as file:
 		'total'))
 
 	print(
-		'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}'.format(
+		'{:11}  {:11s} {:11s} {:11s} {:11s} {:11s}'.format(
 			'res_id',
 			'elec',
 			'vdw',
@@ -226,7 +193,7 @@ with open("ala_scaning.tsv", "w") as file:
 				continue
 
 			print(
-				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
+				'{:11}  {:11.4f} {:11.4f} {:11.4f} {:11.4f} {:11.4f}'.format(
 					en.residue_id(res),
 					- elec[res] + elec_ala[res],
 					- vdw[res] + vdw_ala[res],
@@ -236,7 +203,7 @@ with open("ala_scaning.tsv", "w") as file:
 					solvAB_ala[res] -solvA[res] + solvA_ala[res]))
 
 			file.write(
-				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
+				'{:11},{:11.4f},{:11.4f},{:11.4f},{:11.4f},{:11.4f}\n'.format(
 					en.residue_id(res),
 					- elec[res] + elec_ala[res],
 		   		 - vdw[res] + vdw_ala[res],
@@ -246,3 +213,4 @@ with open("ala_scaning.tsv", "w") as file:
 		  			  solvAB_ala[res] -solvA[res] + solvA_ala[res]
 		  	  )
 	  	  )
+print('Writing  done in file: ala_scaning.tsv')
