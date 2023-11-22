@@ -112,19 +112,15 @@ with open("inter_en_res.csv", "w") as file:
 
 	print(
 		'D#{:11}  {:11s} {:11s} {:11s} {:11s} | {:11s} {:11s} {:11s} {:11s}'.format(
-			'res_id,',
+			'res_id',
 			'elec_res', 'vdw_res', 'solv_AB_res', 'solv_A_res',
-			'elec_ala', 'vdw_ala', 'solv_AB_ala', 'solv_A_ala'
-		)
-	)
+			'elec_ala', 'vdw_ala', 'solv_AB_ala', 'solv_A_ala'))
 
 	file.write(
 		'D#{:11},{:11s},{:11s},{:11s},{:11s}, - ,{:11s},{:11s},{:11s},{:11s}\n'.format(
 			'res_id',
 			'elec_res', 'vdw_res', 'solv_AB_res', 'solv_A_res',
-			'elec_ala', 'vdw_ala', 'solv_AB_ala', 'solv_A_ala'
-		)
-	)
+			'elec_ala', 'vdw_ala', 'solv_AB_ala', 'solv_A_ala'))
 
 	for ch in st[0]:
 		for res in ch.get_residues():
@@ -146,16 +142,13 @@ with open("inter_en_res.csv", "w") as file:
 				'D#{:11}  {:11.4f} {:11.4f} {:11.4f} {:11.4f} | {:11.4f} {:11.4f} {:11.4f} {:11.4f}'.format(
 					en.residue_id(res),
 					elec[res], vdw[res], solvAB[res], solvA[res],
-					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
-				))
+					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]))
 			
 			file.write(
 				'D#{:11},{:11.4f},{:11.4f},{:11.4f},{:11.4f}, - ,{:11.4f},{:11.4f},{:11.4f},{:11.4f}\n'.format(
 					en.residue_id(res),
 					elec[res], vdw[res], solvAB[res], solvA[res],
-					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
-				)
-			)
+					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]))
 
 print(f'\nTOTAL ENERGIES of interaction energy based in interface residues ONLY')
 print('{:20}: {:11.4f}'.format('Total Elec Int.', totalIntElec))
@@ -210,7 +203,5 @@ with open("ala_scaning.csv", "w") as file:
 		  		  - solvAB[res] + solvAB_ala[res],
 		  		  - solvA[res] + solvA_ala[res],
 		  		  - elec[res] + elec_ala[res] - vdw[res] + vdw_ala[res] -solvAB[res] +\
-		  			  solvAB_ala[res] -solvA[res] + solvA_ala[res]
-		  	  )
-	  	  )
+		  			  solvAB_ala[res] -solvA[res] + solvA_ala[res]))
 print('Writing  done in file: ala_scaning.tsv')
