@@ -1,7 +1,8 @@
 from Bio.PDB import *
 parser=PDBParser()
 
-            
+#DISCLAIMER ONLY WORKS FOR PROTEINS WITH 2 CHAINS
+# IF YOU WANT IT TO WORK FOR MORE CHANGE if t==0 and make it a triple nested for loop (or search your solution)      
 def chain_atoms(structure, dt):
     model =structure[0]
     t=0
