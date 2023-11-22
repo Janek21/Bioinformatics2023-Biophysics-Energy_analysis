@@ -195,7 +195,7 @@ for ch in st[0]:
 			)
 		)
 
-print(f'\nWritting in file: ala_scaning.tsv')
+print(f'\nWriting in file: ala_scaning.tsv')
 with open("ala_scaning.tsv", "w") as file:
 	file.write(
 		'{:11} {:11s}{:11s}{:11s}{:11s}{:11s}'.format(
