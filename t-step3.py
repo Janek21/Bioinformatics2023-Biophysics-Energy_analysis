@@ -163,7 +163,7 @@ with open("inter_en_res.tsv", "w") as file:
 				))
 			
 			file.write(
-				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
+				'D#{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f} - {:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
 					en.residue_id(res),
 					elec[res], vdw[res], solvAB[res], solvA[res],
 					elec_ala[res], vdw_ala[res], solvAB_ala[res], solvA_ala[res]
@@ -208,7 +208,7 @@ with open("ala_scaning.tsv", "w") as file:
 				continue
 
 			print(
-				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}\n'.format(
+				'{:11} {:11.4f}{:11.4f}{:11.4f}{:11.4f}{:11.4f}'.format(
 					en.residue_id(res),
 					- elec[res] + elec_ala[res],
 					- vdw[res] + vdw_ala[res],
